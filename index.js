@@ -60,8 +60,20 @@ app.post('/api/customers', LoggerMiddleware, (req, res) => {
     })
 })
 
+app.put('/api/customers/:id', LoggerMiddleware, (req, res) => {
+  const { name, email, role } = req.body;
+  res.status(201).json({
+      message: "create data customer successfully",
+      data: {
+          name: name,
+          email: email,
+          role: role
+      }
+  })
+})
+
 // create handling http GET Detail Customer
-app.get('/api/customers/id:', (req, res) => {
+app.get('/api/customers/:id', (req, res) => {
     const customerID = req.params.id; // request params by id customers
     res.status(200).json({
         message: 'get success',
@@ -73,6 +85,7 @@ app.get('/api/customers/id:', (req, res) => {
         }
     })
 })
+
 
 // define listener port using 3000
 const port = process.env.PORT || 3000;
